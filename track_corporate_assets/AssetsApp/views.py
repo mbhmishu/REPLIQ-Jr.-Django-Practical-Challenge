@@ -57,3 +57,54 @@ def employee_detail(request, pk):
     devices = Device.objects.filter(company=employee.company)
     checkouts = CheckOut.objects.filter(employee=employee).order_by('-checked_out')
     return render(request, 'asset_tracker/ABC.html', {'employee': employee, 'devices': devices, 'checkouts': checkouts})
+
+
+
+# Using Django REST Framework      
+
+"""
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .models import Company, Employee, Device, CheckOut
+from .serializers import CompanySerializer, EmployeeSerializer, DeviceSerializer, CheckOutSerializer
+
+class CompanyList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+
+class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+
+class EmployeeList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+class DeviceList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Device.objects.all()
+    serializer_class = DeviceSerializer
+
+class DeviceDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Device.objects.all()
+    serializer_class = DeviceSerializer
+
+class CheckOutList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = CheckOut.objects.all()
+    serializer_class = CheckOutSerializer
+
+class CheckOutDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = CheckOut.objects.all()
+    serializer_class = CheckOutSerializer
+"""
